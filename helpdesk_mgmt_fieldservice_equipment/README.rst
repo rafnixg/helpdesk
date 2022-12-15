@@ -25,7 +25,7 @@ Helpdesk Mgmt Fieldservice Equipment
 
 This module allows the helpdesk portal user to create Tickets related to specific Equipment in pre-determine Fieldservice locations. It is a major component of the vertical-clinical-engeneering.
 
-Table of contents**
+**Table of contents**
 
 .. contents::
    :local:

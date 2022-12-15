@@ -30,7 +30,7 @@
             </li>
         </xpath>
     </template>
-    <template
+    <!-- <template
         id="portal_my_home"
         name="Portal My Home : ticket entries"
         inherit_id="portal.portal_my_home"
@@ -56,7 +56,7 @@
                 >New Ticket</button>
             </form>
         </xpath>
-    </template>
+    </template> -->
     <template id="portal_my_tickets" name="My tickets">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True" />

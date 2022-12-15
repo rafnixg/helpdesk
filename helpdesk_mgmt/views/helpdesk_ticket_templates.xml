@@ -34,7 +34,7 @@
                 <t t-set="url" t-value="'/my/tickets'" />
                 <t t-set="placeholder_count" t-value="'ticket_count'" />
             </t>
-            <form method="POST" t-attf-action="/new/ticket">
+            <!-- <form method="POST" t-attf-action="/new/ticket">
                 <input
                     type="hidden"
                     name="csrf_token"
@@ -46,7 +46,7 @@
                     class="btn btn-primary"
                     style="float: right; margin-right: 0px; margin-top:5px;"
                 >New Ticket</button>
-            </form>
+            </form> -->
         </xpath>
     </template>
     <template id="portal_my_tickets" name="My tickets">
