@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <data>
+        <template id="assets_frontend_website_portal_helpdesk_mgmt_fieldservice_equipment" inherit_id="website.assets_frontend">
+            <xpath expr=".">
+                <script type="text/javascript" src="/helpdesk_mgmt_fieldservice_equipment/static/src/js/helpdesk_ticket_templates.js"/>
+            </xpath>
+        </template>
+    </data>
+
     <template
         id="portal_layout"
         name="Portal layout: ticket menu entry"
@@ -22,19 +30,19 @@
             </li>
         </xpath>
     </template>
-    <template
+    <!-- <template
         id="portal_my_home"
         name="Portal My Home : ticket entries"
         inherit_id="portal.portal_my_home"
         priority="40"
     >
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
-            <t t-call="portal.portal_docs_entry">
+            <t t-if="ticket_count" t-call="portal.portal_docs_entry">
                 <t t-set="title">Tickets</t>
                 <t t-set="url" t-value="'/my/tickets'" />
-                <t t-set="placeholder_count" t-value="'ticket_count'" />
+                <t t-set="count" t-value="ticket_count" />
             </t>
-            <!-- <form method="POST" t-attf-action="/new/ticket">
+            <form method="POST" t-attf-action="/new/ticket">
                 <input
                     type="hidden"
                     name="csrf_token"
@@ -46,9 +54,9 @@
                     class="btn btn-primary"
                     style="float: right; margin-right: 0px; margin-top:5px;"
                 >New Ticket</button>
-            </form> -->
+            </form>
         </xpath>
-    </template>
+    </template> -->
     <template id="portal_my_tickets" name="My tickets">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True" />
@@ -203,12 +211,16 @@
             <div class="oe_structure mb32" />
         </t>
     </template>
-    <template id="portal_create_ticket" name="Create Ticket">
+<!--    <template id="helpdesk_mgmt_portal_create_ticket_inherited" name="Create Ticket"-->
+<!--        inherit_id="helpdesk_mgmt.portal_create_ticket" active="False" customize_show="True"-->
+<!--    >-->
+    <template id="helpdesk_mgmt.portal_create_ticket" name="Create Ticket"
+    >
         <t t-call="portal.portal_layout">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="text-center">Send a new ticket</h1>
+                        <h1 class="text-center">Send a new ticket(n)</h1>
                     </div>
                 </div>
             </div>
@@ -243,6 +255,47 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label
+                        class="col-md-3 col-sm-4 control-label"
+                        for="locations"
+                    >Locations</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select
+                            class="form-control"
+                            id="locations"
+                            name="locations"
+                            required="True"
+                        >
+                            <t t-foreach="locations" t-as="loc">
+                                <option t-attf-value="#{loc.id}" t-att-equipment_ids="loc.equipment_ids or []">
+                                    <t t-esc="loc.name" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label
+                        class="col-md-3 col-sm-4 control-label"
+                        for="Equipments"
+                    >Equipments</label>
+                    <div class="col-md-7 col-sm-8">
+                        <select
+                            class="form-control"
+                            id="equipments"
+                            name="equipments"
+                            required="True"
+                        >
+                            <t t-foreach="equipments_ids" t-as="equipments_ids">
+                                <option t-attf-value="#{equipments_ids.id}">
+                                    <t t-esc="equipments_ids.name" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label
                         class="col-md-3 col-sm-4 control-label"
