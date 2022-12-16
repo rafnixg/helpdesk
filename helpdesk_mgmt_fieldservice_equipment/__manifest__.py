@@ -24,7 +24,8 @@
     "data": [
         "security/ir.model.access.csv",
         "views/helpdesk_ticket_templates.xml",
-        "views/helpdesk_ticket_views.xml"
+        "views/helpdesk_ticket_views.xml",
+        "views/fieldservice_equipment_views.xml"
     ],
     "demo": []
 }
