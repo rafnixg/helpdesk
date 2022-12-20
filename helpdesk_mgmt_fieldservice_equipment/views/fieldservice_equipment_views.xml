@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="fieldservice_equipment_helpdesk_form_view_inherit" model="ir.ui.view">
+    <field name="name">fsm.equipment.helpdesk.form.inherit</field>
+    <field name="model">fsm.equipment</field>
+    <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Ticket History">
+                <field name="helpdesk_ticket_ids">
+                    <tree>
+                        <field name="number"/>
+                        <field name="name"/>
+                        <field name="category_id"/>
+                        <field name="create_date"/>
+                        <field name="last_stage_update"/>
+                    </tree>
+                </field>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+</odoo>
