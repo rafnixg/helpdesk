@@ -3,8 +3,7 @@
 # Copyright (C) 2022 - TODAY, Mateus ONunes
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import fields, models
 
 
 class HelpdeskTicket(models.Model):
@@ -26,9 +25,8 @@ class HelpdeskTicket(models.Model):
             "default_priority": self.priority,
             "default_location_id": self.fsm_location_id.id,
             "default_equipment_id": self.fsm_equipment_id.id,
-            "type": 1 # Maintenance
+            "type": 1,  # Maintenance
         }
         res = self.env.ref("fieldservice.fsm_order_form", False)
         action["views"] = [(res and res.id or False, "form")]
         return action
-

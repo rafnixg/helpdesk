@@ -10,7 +10,7 @@
     "author": "Open Source Integrators, "
     "Escodoo, "
     "Odoo Community Association (OCA)",
-    "website": "",
+    "website": "https://github.com/OCA/helpdesk",
     "depends": [
         "base",
         "mail",
@@ -19,14 +19,13 @@
         "fieldservice",
         "fieldservice_equipment_website",
         "website",
-        "base_maintenance"
-        
+        "base_maintenance",
     ],
     "data": [
         "security/ir.model.access.csv",
         "views/helpdesk_ticket_templates.xml",
         "views/helpdesk_ticket_views.xml",
-        "views/fieldservice_equipment_views.xml"
+        "views/fieldservice_equipment_views.xml",
     ],
-    "demo": []
+    "demo": [],
 }
