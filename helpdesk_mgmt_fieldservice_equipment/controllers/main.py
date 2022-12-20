@@ -5,6 +5,7 @@ import werkzeug
 
 import odoo.http as http
 from odoo.http import request
+
 from odoo.addons.helpdesk_mgmt.controllers.main import HelpdeskTicketController
 
 _logger = logging.getLogger(__name__)
@@ -34,9 +35,7 @@ class HelpdeskTicketController(HelpdeskTicketController):
         categories = http.request.env["helpdesk.ticket.category"].search(
             [("active", "=", True)]
         )
-        locations = http.request.env["fsm.location"].search(
-            [("active", "=", True)]
-        )
+        locations = http.request.env["fsm.location"].search([("active", "=", True)])
         equipments_ids = http.request.env["fsm.equipment"].search(
             [("active", "=", True)]
         )
@@ -45,8 +44,13 @@ class HelpdeskTicketController(HelpdeskTicketController):
         name = http.request.env.user.name
         res = http.request.render(
             "helpdesk_mgmt.portal_create_ticket",
-            {"categories": categories, "email": email, "name": name, "locations": locations,
-             "equipments_ids": equipments_ids},
+            {
+                "categories": categories,
+                "email": email,
+                "name": name,
+                "locations": locations,
+                "equipments_ids": equipments_ids,
+            },
         )
 
         return res
@@ -70,7 +74,7 @@ class HelpdeskTicketController(HelpdeskTicketController):
             "partner_name": request.env.user.partner_id.name,
             "partner_email": request.env.user.partner_id.email,
             "fsm_location_id": int(kw.get("locations")),
-            "fsm_equipment_id": int(kw.get("equipments"))
+            "fsm_equipment_id": int(kw.get("equipments")),
         }
         new_ticket = request.env["helpdesk.ticket"].sudo().create(vals)
         new_ticket.message_subscribe(partner_ids=request.env.user.partner_id.ids)

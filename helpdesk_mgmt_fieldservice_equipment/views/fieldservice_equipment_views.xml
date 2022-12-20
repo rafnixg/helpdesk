@@ -3,21 +3,26 @@
 <record id="fieldservice_equipment_helpdesk_form_view_inherit" model="ir.ui.view">
     <field name="name">fsm.equipment.helpdesk.form.inherit</field>
     <field name="model">fsm.equipment</field>
-    <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
+    <field
+            name="inherit_id"
+            ref="fieldservice_equipment_website.fsm_equipment_form_view_inherit"
+        />
     <field name="arch" type="xml">
-        <notebook position="inside">
-            <page string="Ticket History">
-                <field name="helpdesk_ticket_ids">
-                    <tree>
-                        <field name="number"/>
-                        <field name="name"/>
-                        <field name="category_id"/>
-                        <field name="create_date"/>
-                        <field name="last_stage_update"/>
-                    </tree>
-                </field>
-            </page>
-        </notebook>
+        <div name="button_box" position="inside">
+            <button
+                    class="oe_stat_button"
+                    name="smart_button_helpdesk_ticket"
+                    type="object"
+                    icon="fa-book"
+                    context="{'search_default_book_id': active_id}"
+                >
+                <field
+                        string="Tickets"
+                        name="helpdesk_ticket_count"
+                        widget="statinfo"
+                    />
+            </button>
+        </div>
     </field>
 </record>
 

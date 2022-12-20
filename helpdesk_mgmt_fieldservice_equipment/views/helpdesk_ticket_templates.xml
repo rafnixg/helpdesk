@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
-        <template id="assets_frontend_website_portal_helpdesk_mgmt_fieldservice_equipment" inherit_id="website.assets_frontend">
+        <template
+            id="assets_frontend_website_portal_helpdesk_mgmt_fieldservice_equipment"
+            inherit_id="website.assets_frontend"
+        >
             <xpath expr=".">
-                <script type="text/javascript" src="/helpdesk_mgmt_fieldservice_equipment/static/src/js/helpdesk_ticket_templates.js"/>
+                <script
+                    type="text/javascript"
+                    src="/helpdesk_mgmt_fieldservice_equipment/static/src/js/helpdesk_ticket_templates.js"
+                />
             </xpath>
         </template>
     </data>
@@ -214,8 +220,7 @@
 <!--    <template id="helpdesk_mgmt_portal_create_ticket_inherited" name="Create Ticket"-->
 <!--        inherit_id="helpdesk_mgmt.portal_create_ticket" active="False" customize_show="True"-->
 <!--    >-->
-    <template id="helpdesk_mgmt.portal_create_ticket" name="Create Ticket"
-    >
+    <template id="helpdesk_mgmt.portal_create_ticket" name="Create Ticket">
         <t t-call="portal.portal_layout">
             <div class="container">
                 <div class="row">
@@ -268,7 +273,10 @@
                             required="True"
                         >
                             <t t-foreach="locations" t-as="loc">
-                                <option t-attf-value="#{loc.id}" t-att-equipment_ids="loc.equipment_ids or []">
+                                <option
+                                    t-attf-value="#{loc.id}"
+                                    t-att-equipment_ids="loc.equipment_ids or []"
+                                >
                                     <t t-esc="loc.name" />
                                 </option>
                             </t>
