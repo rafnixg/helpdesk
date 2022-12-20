@@ -17,6 +17,7 @@
         "portal",
         "helpdesk_mgmt",
         "fieldservice",
+        "fieldservice_equipment_website",
         "website",
         "base_maintenance"
         
