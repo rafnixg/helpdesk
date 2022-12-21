@@ -128,7 +128,7 @@
         <t t-call="portal.portal_layout">
             <div class="container">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading mt8">
                         <div class="row">
                             <div class="col-md-6">
                                 <h4>
@@ -136,60 +136,82 @@
                                     <span t-field="ticket.name" />
                                 </h4>
                             </div>
-                            <t t-foreach="closed_stages" t-as="stage">
-                                <form
-                                    method="GET"
-                                    t-if="not ticket.closed_date"
-                                    t-attf-action="/ticket/close"
-                                    style="display:inline;"
-                                >
-                                    <input
-                                        type="hidden"
-                                        name="ticket_id"
-                                        t-attf-value="#{ticket.id}"
-                                    />
-                                    <input
-                                        type="hidden"
-                                        name="stage_id"
-                                        t-attf-value="#{stage.id}"
-                                    />
-                                    <button
-                                        class="btn btn-success pull-right"
-                                        style="margin-right:15px;margin-top:3px;"
-                                    >
-                                        <span t-field="stage.name" />
-                                    </button>
-                                </form>
-                            </t>
                         </div>
                     </div>
                     <div class="panel-body">
-                        <div class="mb8">
-                            <div>
-                                <div class="pull-left">
-                                    <strong>Number:</strong>
-                                    <span t-field="ticket.number" />
-                                    <br />
-                                    <strong>Date:</strong>
-                                    <span t-field="ticket.create_date" />
-                                    <br />
-                                    <b>Category:</b>
-                                    <t t-esc="ticket.category_id.name" />
-                                    <br />
-                                    <b>Stage:</b>
-                                    <t t-esc="ticket.stage_id.name" />
-                                    <br />
-                                </div>
-                                <div class="pull-right">
-                                    <strong>Last Stage Update:</strong>
-                                    <span t-field="ticket.last_stage_update" />
-                                    <br />
-                                </div>
+                        <div class="row mb8">
+                            <div class="col-md-6">
+                                <strong>Number:</strong>
+                                <span t-field="ticket.number" />
+                                <br />
+                                <strong>Date:</strong>
+                                <span t-field="ticket.create_date" />
+                                <br />
+                                <b>Category:</b>
+                                <t t-esc="ticket.category_id.name" />
+                                <br />
+                                <b>Stage:</b>
+                                <t t-esc="ticket.stage_id.name" />
+                                <br />
+                                <strong>Last Stage Update:</strong>
+                                <span t-field="ticket.last_stage_update" />
+                                <br />
+                                <t t-foreach="closed_stages" t-as="stage">
+                                    <form
+                                        method="GET"
+                                        t-if="not ticket.closed_date"
+                                        t-attf-action="/ticket/close"
+                                        style="display:inline;"
+                                    >
+                                        <input
+                                            type="hidden"
+                                            name="ticket_id"
+                                            t-attf-value="#{ticket.id}"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            name="stage_id"
+                                            t-attf-value="#{stage.id}"
+                                        />
+                                        <button
+                                            class="btn btn-success"
+                                            style="margin-right:15px;margin-top:3px;"
+                                        >
+                                            <span t-field="stage.name" />
+                                        </button>
+                                    </form>
+                                </t>
                             </div>
-                            <br />
-                            <br />
-                            <h4 class="page-header">Description</h4>
-                            <t t-raw="ticket.description" />
+                            <div class="col-md-6">
+                                <strong>DATOS DEL EQUIPO</strong>
+                                <br />
+                                <strong>Nombre:</strong>
+                                <span t-field="ticket.fsm_equipment_id.name" />
+                                <br />
+                                <strong>Producto:</strong>
+                                <span
+                                    t-field="ticket.fsm_equipment_id.product_id.name"
+                                />
+                                <br />
+                                <strong>Categoría:</strong>
+                                <span
+                                    t-field="ticket.fsm_equipment_id.product_id.categ_id.name"
+                                />
+                                <br />
+                                <strong>Número de Serie:</strong>
+                                <span t-field="ticket.fsm_equipment_id.lot_id.name" />
+                                <br />
+                                <strong>Local:</strong>
+                                <span t-field="ticket.fsm_location_id.name" />
+                                <br />
+                                <strong>Dirección:</strong>
+                                <span t-field="ticket.fsm_location_id.street" />
+                                <br />
+                            </div>
+                            <div class="col-md-12 mt8">
+                                <h4 class="page-header">Description</h4>
+                                <t t-raw="ticket.description" />
+                            </div>
                             <br />
                         </div>
                         <h4 class="page-header">History</h4>
