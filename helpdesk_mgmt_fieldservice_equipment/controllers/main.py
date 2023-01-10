@@ -11,16 +11,14 @@ from odoo.addons.helpdesk_mgmt.controllers.main import HelpdeskTicketController
 _logger = logging.getLogger(__name__)
 
 
-class HelpdeskTicketController(HelpdeskTicketController):
+class HelpdeskTicketControllerInherit(HelpdeskTicketController):
     @http.route("/ticket/close", type="http", auth="user")
     def support_ticket_close(self, **kw):
         """Close the support ticket"""
-        values = {}
-        for field_name, field_value in kw.items():
-            if field_name.endswith("_id"):
-                values[field_name] = int(field_value)
-            else:
-                values[field_name] = field_value
+        values = {
+            field_name: int(field_value) if field_name.endswith("_id") else field_value
+            for field_name, field_value in kw.items()
+        }
         ticket = (
             http.request.env["helpdesk.ticket"]
             .sudo()
@@ -28,7 +26,7 @@ class HelpdeskTicketController(HelpdeskTicketController):
         )
         ticket.stage_id = values.get("stage_id")
 
-        return werkzeug.utils.redirect("/my/ticket/" + str(ticket.id))
+        return werkzeug.utils.redirect(f"/my/ticket/{str(ticket.id)}")
 
     @http.route("/new/ticket", type="http", auth="user", website=True)
     def create_new_ticket(self, **kw):
@@ -38,14 +36,20 @@ class HelpdeskTicketController(HelpdeskTicketController):
         partner_id = http.request.env.user.partner_id
         if partner_id.parent_id:
             partner_id = partner_id.parent_id
-        locations = http.request.env["fsm.location"].search([("active", "=", True),("owner_id", "=", partner_id.id)])
+        locations = http.request.env["fsm.location"].search(
+            [
+                ("active", "=", True),
+                ("owner_id", "=", partner_id.id),
+                ("equipment_ids", "!=", False),
+            ]
+        )
         equipments_ids = http.request.env["fsm.equipment"].search(
             [("active", "=", True), ("owned_by_id", "=", partner_id.id)]
         )
 
         email = http.request.env.user.email
         name = http.request.env.user.name
-        res = http.request.render(
+        return http.request.render(
             "helpdesk_mgmt.portal_create_ticket",
             {
                 "categories": categories,
@@ -55,8 +59,6 @@ class HelpdeskTicketController(HelpdeskTicketController):
                 "equipments_ids": equipments_ids,
             },
         )
-
-        return res
 
     @http.route("/submitted/ticket", type="http", auth="user", website=True, csrf=True)
     def submit_ticket(self, **kw):
@@ -93,4 +95,4 @@ class HelpdeskTicketController(HelpdeskTicketController):
                             "res_id": new_ticket.id,
                         }
                     )
-        return werkzeug.utils.redirect("/my/ticket/%s" % new_ticket.id)
+        return werkzeug.utils.redirect(f"/my/ticket/{new_ticket.id}")

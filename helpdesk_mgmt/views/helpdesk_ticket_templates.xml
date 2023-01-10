@@ -211,7 +211,7 @@
                             <div class="col-md-12 mt8 mb8">
                                 <h4 class="page-header">Description</h4>
                                 <t t-raw="ticket.description" />
-                                <hr/>
+                                <hr />
                             </div>
                             <div class="col-md-12">
                                 <t t-if="ticket.fsm_order_ids">
@@ -230,17 +230,31 @@
                                         </thead>
                                         <tbody>
                                         <t
-                                                    t-foreach="ticket.fsm_order_ids"
-                                                    t-as="order"
-                                                >
+                                                t-foreach="ticket.fsm_order_ids"
+                                                t-as="order"
+                                            >
                                             <tr>
-                                                <th scope="row"><t t-esc="order.name"/></th>
-                                                <td><t t-esc="order.location_id.name"/></td>
-                                                <td><t t-esc="order.stage_id.name"/></td>
-                                                <td><t t-esc="order.person_id.name" /></td>
-                                                <td><t t-esc="order.scheduled_date_start" /></td>
-                                                <td><t t-esc="order.scheduled_date_end" /></td>
-                                                <td><t t-esc="order.scheduled_duration" /></td>
+                                                <th scope="row"><t
+                                                            t-esc="order.name"
+                                                        /></th>
+                                                <td><t
+                                                            t-esc="order.location_id.name"
+                                                        /></td>
+                                                <td><t
+                                                            t-esc="order.stage_id.name"
+                                                        /></td>
+                                                <td><t
+                                                            t-esc="order.person_id.name"
+                                                        /></td>
+                                                <td><t
+                                                            t-esc="order.scheduled_date_start"
+                                                        /></td>
+                                                <td><t
+                                                            t-esc="order.scheduled_date_end"
+                                                        /></td>
+                                                <td><t
+                                                            t-esc="order.scheduled_duration"
+                                                        /></td>
                                             </tr>
                                         </t>
                                         </tbody>
