@@ -35,9 +35,12 @@ class HelpdeskTicketController(HelpdeskTicketController):
         categories = http.request.env["helpdesk.ticket.category"].search(
             [("active", "=", True)]
         )
-        locations = http.request.env["fsm.location"].search([("active", "=", True)])
+        partner_id = http.request.env.user.partner_id
+        if partner_id.parent_id:
+            partner_id = partner_id.parent_id
+        locations = http.request.env["fsm.location"].search([("active", "=", True),("owner_id", "=", partner_id.id)])
         equipments_ids = http.request.env["fsm.equipment"].search(
-            [("active", "=", True)]
+            [("active", "=", True), ("owned_by_id", "=", partner_id.id)]
         )
 
         email = http.request.env.user.email

@@ -9,7 +9,7 @@ odoo.define("helpdesk_ticket_templates.js", function (require) {
     });
 
     $("#equipments").hide();
-    console.log("xxxxXxxxx");
+    // console.log("xxxxXxxxx");
 
     $("select[name='locations']").on("change", function () {
         var locations = this;
