@@ -5,7 +5,7 @@
     "name": "Helpdesk Mgmt Fieldservice Equipment",
     "summary": """
         Create service orders from a ticket""",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.1.1",
     "license": "LGPL-3",
     "author": "Open Source Integrators, "
     "Escodoo, "

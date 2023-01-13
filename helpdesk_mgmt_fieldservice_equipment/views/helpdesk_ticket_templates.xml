@@ -275,7 +275,7 @@
                             <t t-foreach="locations" t-as="loc">
                                 <option
                                     t-attf-value="#{loc.id}"
-                                    t-att-equipment_ids="loc.equipment_ids or []"
+                                    t-attf-equipment_ids="#{loc.equipment_ids or []}"
                                 >
                                     <t t-esc="loc.name" />
                                 </option>
@@ -295,9 +295,9 @@
                             name="equipments"
                             required="True"
                         >
-                            <t t-foreach="equipments_ids" t-as="equipments_ids">
-                                <option t-attf-value="#{equipments_ids.id}">
-                                    <t t-esc="equipments_ids.name" />
+                            <t t-foreach="equipments_ids" t-as="equipment">
+                                <option t-attf-value="#{equipment.id}">
+                                    <t t-esc="equipment.name" />
                                 </option>
                             </t>
                         </select>
