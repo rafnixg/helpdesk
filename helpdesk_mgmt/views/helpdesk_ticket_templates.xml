@@ -76,7 +76,7 @@
                     <table class="table table-hover o_portal_my_doc_table">
                         <thead>
                             <tr class="active">
-                                <th>By</th>
+                                <!-- <th>By</th> -->
                                 <th>Number</th>
                                 <th>Name</th>
                                 <th>Category</th>
@@ -88,9 +88,9 @@
                         </thead>
                         <t t-foreach="tickets" t-as="ticket">
                             <tr>
-                                <td>
+                                <!-- <td>
                                     <t t-esc="ticket.partner_id.name" />
-                                </td>
+                                </td> -->
                                 <td>
                                     <t t-esc="ticket.number" />
                                 </td>
@@ -156,7 +156,7 @@
                                 <strong>Last Stage Update:</strong>
                                 <span t-field="ticket.last_stage_update" />
                                 <br />
-                                <t t-foreach="closed_stages" t-as="stage">
+                                <!-- <t t-foreach="closed_stages" t-as="stage">
                                     <form
                                         method="GET"
                                         t-if="not ticket.closed_date"
@@ -180,7 +180,7 @@
                                             <span t-field="stage.name" />
                                         </button>
                                     </form>
-                                </t>
+                                </t> -->
                             </div>
                             <div class="col-md-6">
                                 <strong>DATOS DEL EQUIPO</strong>
